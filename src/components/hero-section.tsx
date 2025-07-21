@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Mail, ArrowDown } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -12,6 +12,9 @@ export const HeroSection = () => {
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  // Estado do menu mobile
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -33,11 +36,29 @@ export const HeroSection = () => {
         </div>
         {/* Menu mobile: hambúrguer */}
         <div className="ml-auto md:hidden">
-          <button className="p-2 focus:outline-none" aria-label="Abrir menu">
+          <button className="p-2 focus:outline-none" aria-label="Abrir menu" onClick={() => setMenuOpen(true)}>
             <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
+          {/* Drawer do menu mobile */}
+          {menuOpen && (
+            <div className="fixed inset-0 z-50 bg-black/80 flex flex-col">
+              <button className="self-end m-4 p-2" aria-label="Fechar menu" onClick={() => setMenuOpen(false)}>
+                <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <nav className="flex flex-col items-center gap-8 mt-12">
+                <a href="#services" className="text-xl font-semibold hover:text-accent" onClick={() => setMenuOpen(false)}>Serviços</a>
+                <a href="#differentials" className="text-xl font-semibold hover:text-accent" onClick={() => setMenuOpen(false)}>Diferenciais</a>
+                <a href="#process" className="text-xl font-semibold hover:text-accent" onClick={() => setMenuOpen(false)}>Processo</a>
+                <a href="#about" className="text-xl font-semibold hover:text-accent" onClick={() => setMenuOpen(false)}>Sobre</a>
+                <a href="#faq" className="text-xl font-semibold hover:text-accent" onClick={() => setMenuOpen(false)}>FAQ</a>
+                <a href="#contact" className="text-xl font-semibold hover:text-accent" onClick={() => setMenuOpen(false)}>Contato</a>
+              </nav>
+            </div>
+          )}
         </div>
       </nav>
       {/* Video Background Desktop/Tablet */}

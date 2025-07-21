@@ -20,7 +20,8 @@ export const HeroSection = () => {
         <a href="#" className="flex items-center gap-2 group mr-8">
           <img src="/Logo_Impulse_Branca-02.png" alt="Logo Impulse" className="h-10 w-auto drop-shadow-lg transition-transform duration-200 group-hover:scale-105" />
         </a>
-        <div className="flex-1 flex justify-center">
+        {/* Menu desktop */}
+        <div className="flex-1 justify-center hidden md:flex">
           <div className="flex gap-6">
             <a href="#services" className="hover:text-accent transition-colors duration-200">Serviços</a>
             <a href="#differentials" className="hover:text-accent transition-colors duration-200">Diferenciais</a>
@@ -30,16 +31,31 @@ export const HeroSection = () => {
             <a href="#contact" className="hover:text-accent transition-colors duration-200">Contato</a>
           </div>
         </div>
+        {/* Menu mobile: hambúrguer */}
+        <div className="ml-auto md:hidden">
+          <button className="p-2 focus:outline-none" aria-label="Abrir menu">
+            <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
       </nav>
-      {/* Video Background */}
+      {/* Video Background Desktop/Tablet */}
       <video
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="hidden md:block absolute inset-0 w-full h-full object-cover z-0"
         src="/video_landing_page.mp4"
         autoPlay
         muted
         playsInline
         preload="auto"
         poster="/Logo_Impulse_Branca-02.png"
+      />
+      {/* Poster Mobile */}
+      <img
+        src="/Logo_Impulse_Branca-02.png"
+        alt="Impulse Background"
+        className="block md:hidden absolute inset-0 w-full h-full object-cover z-0"
+        draggable="false"
       />
       {/* Overlay escuro */}
       <div className="absolute inset-0 bg-black/60 z-10 pointer-events-none" />

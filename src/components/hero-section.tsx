@@ -38,6 +38,8 @@ export const HeroSection = () => {
         autoPlay
         muted
         playsInline
+        preload="auto"
+        poster="/Logo_Impulse_Branca-02.png"
       />
       {/* Overlay escuro */}
       <div className="absolute inset-0 bg-black/60 z-10 pointer-events-none" />

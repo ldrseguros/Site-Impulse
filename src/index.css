@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Impulse Brand Colors */
+    --impulse-blue: 228 67% 20%;        /* #212853 - Azul Profundo */
+    --impulse-orange: 24 86% 52%;       /* #ee731b - Laranja Impacto */
+    --impulse-purple: 265 80% 38%;      /* #5B21B6 - Roxo Impulse Escuro */
+    --impulse-white: 0 0% 100%;         /* #ffffff - Branco Puro */
+    --impulse-gray-light: 0 0% 96%;     /* #f5f5f5 - Cinza Claro */
+    
+    /* Design System Tokens */
+    --background: var(--impulse-white);
+    --foreground: var(--impulse-blue);
+
+    --card: var(--impulse-white);
+    --card-foreground: var(--impulse-blue);
+
+    --popover: var(--impulse-white);
+    --popover-foreground: var(--impulse-blue);
+
+    --primary: var(--impulse-blue);
+    --primary-foreground: var(--impulse-white);
+
+    --secondary: var(--impulse-purple);
+    --secondary-foreground: var(--impulse-white);
+
+    --muted: var(--impulse-gray-light);
+    --muted-foreground: 228 35% 45%;
+
+    --accent: var(--impulse-orange);
+    --accent-foreground: var(--impulse-white);
+    --highlight: var(--impulse-purple);
+    --highlight-foreground: var(--impulse-white);
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: var(--impulse-white);
+
+    --border: 228 20% 90%;
+    --input: 228 20% 90%;
+    --ring: var(--impulse-orange);
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--impulse-blue)), hsl(var(--impulse-purple)), hsl(var(--impulse-orange)));
+    --gradient-accent: linear-gradient(45deg, hsl(var(--impulse-orange)), hsl(var(--impulse-purple)), hsl(24 90% 60%));
+    --gradient-purple: linear-gradient(90deg, hsl(var(--impulse-purple)), hsl(var(--impulse-blue)));
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(var(--impulse-orange) / 0.2);
+    --shadow-card: 0 10px 30px -10px hsl(var(--impulse-blue) / 0.1);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    /* Dark mode keeps same brand colors */
+    --background: var(--impulse-blue);
+    --foreground: var(--impulse-white);
+
+    --card: 228 60% 15%;
+    --card-foreground: var(--impulse-white);
+
+    --popover: var(--impulse-blue);
+    --popover-foreground: var(--impulse-white);
+
+    --primary: var(--impulse-white);
+    --primary-foreground: var(--impulse-blue);
+
+    --secondary: 228 50% 25%;
+    --secondary-foreground: var(--impulse-white);
+
+    --muted: 228 50% 25%;
+    --muted-foreground: 228 20% 70%;
+
+    --accent: var(--impulse-orange);
+    --accent-foreground: var(--impulse-white);
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: var(--impulse-white);
+
+    --border: 228 40% 30%;
+    --input: 228 40% 30%;
+    --ring: var(--impulse-orange);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    /* Gradiente removido para títulos, usar cor sólida para melhor UX */
+    color: hsl(var(--impulse-purple));
+    font-weight: bold;
+  }
+  .bg-gradient-purple {
+    background: var(--gradient-purple);
+  }
+  .text-purple {
+    color: hsl(var(--impulse-purple));
+  }
+  .bg-purple {
+    background-color: hsl(var(--impulse-purple));
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-[0_0_40px_hsl(var(--impulse-orange)/0.3)];
+  }
+  
+  .parallax-element {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  .hero-background {
+    background: linear-gradient(135deg, hsl(var(--impulse-blue)) 0%, hsl(var(--impulse-orange)) 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease-in-out infinite;
+  }
+  
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+}
